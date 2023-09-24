@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059f6e5e340c85d418d4d08ff00edaed, type: 3}
   m_Name: Heavy Helmet
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
   image: {fileID: 697603220, guid: 20d945a492b21fc4885d87f464a3bd84, type: 3}
   type: 0
-  actionType: 0
-  range: {x: 5, y: 4}
   stackable: 0
+  startPrice: 100

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemDragAndDropLogic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     RectTransform rectTransform;
     Canvas canvas;
     CanvasGroup canvasGroup;
-    Transform deffParent;
+    public Transform deffParent;
 
     void Awake()
     {
@@ -19,7 +19,6 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
-        
         SetParent(transform.root);
     }
 
@@ -31,18 +30,13 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = true;        
 
-        transform.SetParent(deffParent);
+        SetParent(deffParent);
     }
 
     void SetParent(Transform parent)
     {
         transform.SetParent(parent);
-    }
-
-    public void ChangeParent(Transform parent)
-    {
-        deffParent = parent;
     }
 }

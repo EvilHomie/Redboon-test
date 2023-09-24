@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059f6e5e340c85d418d4d08ff00edaed, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
   image: {fileID: 21300000, guid: 66b2c1b61cfc10f46a498c2bbf87a97e, type: 3}
-  type: 1
-  actionType: 2
-  range: {x: 5, y: 4}
+  type: 6
   stackable: 1
+  startPrice: 10
