@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemDragAndDropLogic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragAndDropLogic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     RectTransform rectTransform;
     Canvas canvas;
     CanvasGroup canvasGroup;
     public Transform deffParent;
 
-    void Awake()
+    void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = transform.root.GetComponent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
         deffParent = transform.parent;
+        canvasGroup.blocksRaycasts = true;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

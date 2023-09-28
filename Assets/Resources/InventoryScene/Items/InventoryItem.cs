@@ -9,19 +9,40 @@ public class InventoryItem : MonoBehaviour
     TextMeshProUGUI priceText;
 
     public int count = 1;
+    public int price;
+    public Owner owner;
 
-    void Start()
+    public InventoryItem(BasicItem basicItem)
     {
+        this.basicItem = basicItem;
+    }
+
+    void Awake()
+    {        
         countText = transform.Find("Count Text").GetComponent<TextMeshProUGUI>();
         priceText = transform.Find("Price Text").GetComponent <TextMeshProUGUI>();
+        owner = Owner.Nobody;
+    }
+    private void Start()
+    {
+        MerchantInventory.OnOpenMerchantMenu += ShowPrice;
         InitialiseItem(basicItem);
-        RefreshCount();
+        RefreshPrice();
+        RefreshCount();        
+    }
+    private void OnDestroy()
+    {
+        MerchantInventory.OnOpenMerchantMenu -= ShowPrice;
+    }
+
+    private void ShowPrice(bool status)
+    {
+        priceText.gameObject.SetActive(status);
     }
 
     void InitialiseItem(BasicItem newItem)
     {
         GetComponent<Image>().sprite = newItem.image;
-        priceText.text = $"Price : {newItem.startPrice} G";
     }
 
     public void RefreshCount()
@@ -29,6 +50,18 @@ public class InventoryItem : MonoBehaviour
         countText.text = count.ToString();
         bool countTextActive = count > 1;
         countText.gameObject.SetActive(countTextActive);
+    }
+
+    public void RefreshPrice()
+    {
+        priceText.text = $"Price : {price} G";
+    }
+
+    public enum Owner
+    {
+        Nobody,
+        Player,
+        Merchant
     }
 }
 
